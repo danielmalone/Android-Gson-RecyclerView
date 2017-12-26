@@ -34,11 +34,12 @@ class MainActivity : AppCompatActivity() {
     fun showStories(json: String) {
         val gson: Gson = GsonBuilder().create()
         val stories: List<Story> = gson.fromJson(json, Array<Story>::class.java).toList()
-        showRecyclerView(stories)
+        val newStories: List<Story> = stories.subList(70, stories.size)
+        showRecyclerView(newStories)
     }
 
     fun showRecyclerView(stories: List<Story>) {
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = StoriesAdapter(stories, this@MainActivity)
+        recyclerView.adapter = StoriesAdapter(stories)
     }
 }
